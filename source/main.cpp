@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <switch.h>
 
 #include <vector>
@@ -14,9 +15,6 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <sys/stat.h>
 #include <dirent.h>
 
@@ -93,18 +91,20 @@ void draw_logo(SDL_Renderer *renderer, int x, int y, int r, int g, int b, int im
 }
 
 int main(int argc, char *argv[]) {
+    srand(time(NULL));
+
     SDL_Event event;
     SDL_Window *window;
     SDL_Renderer *renderer;
     int done = 0, w = 1280, h = 720, img_size = 225;
 
-    int speed = 3;
+    int speed = 0;
 
     int r = rand() % 255;
     int g = rand() % 255;
     int b = rand() % 255;
-    int x = rand() % w - img_size;
-    int y = rand() % h - img_size;
+    int x = rand() % (w - img_size);
+    int y = rand() % (h - img_size);
     int v_x = rand() % 1;
     int v_y = rand() % 1;
     if (v_x == 0) v_x = -1;
